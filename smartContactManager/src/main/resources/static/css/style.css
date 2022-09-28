@@ -1,0 +1,131 @@
+body{
+	/*background: #e2e2e2;*/
+	background: linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)) ,url(../image/study.jpg);
+}
+
+.bg-primary{
+	background: #009688 !important;
+}
+
+.banner{
+	width: 100%;
+	height: 100vh;
+	
+	background-size: cover;
+	color: white;
+}
+
+.my-card{
+	background: #ffffff;
+	padding: 30px;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 20px;
+  width: 800px;
+  height: 450px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+@media only screen and (max-width:600px){
+	.sidebar{
+		display: none;
+		width: 80% !important;
+		background: white;
+		height: 100vh;
+		position: fixed;
+		padding-top: 20px;
+	}
+	
+	.content{
+		margin-left: 0%!important;
+	}
+	
+}
+
+.sidebar{
+	width: 18%;
+	background: white;
+	height: 100%;
+	position: absolute;
+	z-index: 1000;
+}
+
+.sidebar i{
+	margin: 0px 5px;
+}
+
+.sidebar .divider{
+	background: #e2e2e2;
+	height: 1px;
+	width: 100%;
+}
+
+.sidebar a{
+	width: 100%;
+	text-decoration: none;
+	display: block;
+	padding: 10px 25px;
+	color: grey;
+}
+
+.sidebar .crossBtn{
+	top: 0;
+	display: block;
+	right: 35px;
+	font-size: 35px;
+	cursor: pointer;
+}
+
+.sidebar a:hover{
+	background: #e2e2e2;
+}
+
+.content{
+	margin-left:20%;
+}
+
+.content i{
+	background: white;
+	cursor: pointer;
+}
+
+.content i:hover{
+	background: blue;
+}
+
+.smallImage{
+	height: 35px;
+	width: 35px;
+	border: 1px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.profileImage{
+	height: 200px;
+	width: 200px;
+	border: 1px solid black;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.search-container{
+	position: relative;
+}
+
+.search-result{
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid black;
+	display: none;
+}

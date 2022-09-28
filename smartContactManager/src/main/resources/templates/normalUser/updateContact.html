@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normalUser/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${title}"></title>
+</head>
+<body>
+	<section class="banner d-flex justify-content-center align-items-center">
+		<div style="height: 100%;" th:if="${contact}" class="card col-md-10 offset-md-1">
+			<div class="card-body">
+				<h1 class="text-center" style="color:black;">Update Contact</h1>
+				<div class="text-center container">
+					<img th:src="@{'/image/'+${contact.image}}" alt="Not found" class="profileImage" />
+				</div>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+							<form 
+							 th:object="${contact}"
+							 enctype="multipart/form-data"
+							 method="post"
+							 th:action="@{/user/process-update}"
+							 class="mt-2"
+							 >
+							 	<input type="hidden" th:value="${contact.cid}" name="contactID" />
+								<div class="input-group mt-2">
+									<input th:value="${contact.name}" type="text" id="name" name="name" placeholder="Enter name here" class="form-control"/>
+								</div>
+								<div class="input-group mt-2">
+									<input th:value="${contact.nickname}" type="text" id="nickName" name="nickname" placeholder="Enter nickname here" class="form-control"/>
+								</div>
+								<div class="input-group mt-2">
+									<input th:value="${contact.email}" type="email" id="email" name="email" placeholder="Enter email here" class="form-control"/>
+								</div>
+								<div class="input-group mt-2">
+									<input th:value="${contact.work}" type="text" id="work" name="work" placeholder="Where do you work ?" class="form-control"/>
+								</div>
+								<div class="input-group mt-2">
+									<input th:value="${contact.phone}" type="number" id="phone" name="phone" placeholder="Enter phone number here" class="form-control"/>
+								</div>
+								<div class="form-group mt-2">
+									<textarea th:text="${contact.description}" id="description" name="description" rows="5" class="form-control" placeholder="Enter description here"></textarea>
+								</div>
+								<div class="">
+									<input type="file" name="profilePicture" />
+								</div>
+								<div class="container text-center">
+									<button type="submit" class="btn btn-outline-primary">Update Contact</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

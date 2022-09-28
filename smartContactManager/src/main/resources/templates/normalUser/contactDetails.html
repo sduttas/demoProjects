@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normalUser/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${title}"></title>
+</head>
+<body>
+	<section class="banner d-flex justify-content-center align-items-center">
+		<h2 th:if="${notFound}"><span th:text="${notFound}"></span></h2>
+		<div th:unless="${notFound}" class="card col-md-10 offset-md-1 text-center">
+			<div th:if="${contact}" style="color: black;" class="card-body">
+				<div class="container">
+					<img th:src="@{'/image/'+${contact.image}}" alt="Not found" class="profileImage" />
+				</div>
+				<h1><span th:text="${contact.name}"></span>(<span th:text="${contact.nickname}"></span>)</h1>
+				<table style="color: black;" class="table table-striped">
+				  <tbody>
+				    <tr>
+				      <th scope="row">#ID</th>
+				      <td th:text="${contact.cid}"></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Work</th>
+				      <td th:text="${contact.work}"></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Email</th>
+				      <td th:text="${contact.email}"></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Phone</th>
+				      <td th:text="${contact.phone}"></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<div class="mt-2">
+					<h6 style="color: black;" th:text="${contact.description}"></h6>
+				</div>
+			</div>
+			
+			<h2 th:unless="${contact}" style="color: black;">You are not authorised to see this resource!!</h2>
+		</div>
+		
+		
+	</section>
+</body>
+</html>
