@@ -21,6 +21,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,8 @@ import com.smart.helper.Message;
 @RequestMapping("/user")
 public class UserController {
 	
+	@Autowired
+	BCryptPasswordEncoder bCrypt;
 	@Autowired
 	UserRepository userRepo;
 	@Autowired
@@ -264,5 +267,25 @@ public class UserController {
 	public String getSettings(Model model) {
 		model.addAttribute("title", "Settings page");
 		return "normalUser/settingsPage";
+	}
+	
+	@PostMapping("/change-password")
+	public String changePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
+		
+		String userEmail = principal.getName();
+		User user = this.userRepo.getUserByUserName(userEmail);
+		String oldEncodedPassword = user.getPassword();
+		
+		if(this.bCrypt.matches(oldPassword, oldEncodedPassword)) {
+			user.setPassword(this.bCrypt.encode(newPassword));
+			this.userRepo.save(user);
+			session.setAttribute("message", new Message("Password changed successfully.","success"));
+		}
+		else {
+			session.setAttribute("message", new Message("Password doesn't match.","danger"));
+			return "normalUser/settingsPage";
+		}
+		
+		return "redirect:/user/dashboard";
 	}
 }

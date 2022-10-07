@@ -56,7 +56,7 @@
 		<i onclick="toggleSidebar()" class="fa-light fa-bars"></i>
 		<div th:if="${session.message}" class="text-center">
 			<div th:classappend="${'alert-'+session.message.type}" class="alert " th:text="${session.message.content}" role="alert">
-			  
+			 	
 			</div>
 		</div>
 		<th:block th:text="${#session.removeAttribute('message')}"></th:block>
